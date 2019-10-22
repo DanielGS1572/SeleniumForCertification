@@ -18,10 +18,17 @@ public class FirstKata {
     public static void main(String[] args) throws InterruptedException {
 /**
  * HAY 4 FORMAS DE SINCRONIZACIÓN
- *  - Implicit wait
+ *  - Implicit wait - Se esta definiendo de forma global hasta que muere el driver
  *  - Explicit wait
  *  - Thread.sleep
  *  - Fluent wait
+ *
+ *  //implicitWait es de forma general y aplica a cada findElement... No puede ser un numero muy alto
+ *         //pues se pueden esconder temas de performance y no puede ser tan bajo como para que no tome
+ *         //los elementos
+ *
+ *         //explicitWait es para cuando el implicitWait no es suficientes y se hace referencia a un solo elemento
+ *        en particular
  */
 
       //  System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");    //SETUP OF WEBDRIVER
@@ -29,12 +36,10 @@ public class FirstKata {
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
-//implicitWait es de forma general y aplica a cada findElement... No puede ser un numero muy alto
-        //pues se pueden esconder temas de performance y no puede ser tan bajo como para que no tome
-        //los elementos
+
 //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        //explicitWait es para cuando el implicitWait no es suficientes
+
 
         WebDriverWait w = new WebDriverWait(driver, 5);
 
