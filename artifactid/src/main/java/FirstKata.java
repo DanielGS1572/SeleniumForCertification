@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class FirstKata {
     /* public static void main (String [] args){
@@ -29,6 +30,8 @@ public class FirstKata {
  *
  *         //explicitWait es para cuando el implicitWait no es suficientes y se hace referencia a un solo elemento
  *        en particular
+ *              FluentWait cae dentro de la categoría de explicitWait.- Busca en intervalos de tiempo
+ *
  */
 
       //  System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");    //SETUP OF WEBDRIVER
@@ -37,11 +40,11 @@ public class FirstKata {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
 
-//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 
 
-        WebDriverWait w = new WebDriverWait(driver, 5);
+        WebDriverWait w = new WebDriverWait(driver, 10);
 
 
         String[] itemsNeeded = {"Cucumber", "Brocolli", "Beetroot"};
@@ -49,7 +52,7 @@ public class FirstKata {
 
         driver.get("https://rahulshettyacademy.com/seleniumPractise/");
 
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
 
         addItems(driver, itemsNeeded);
 
@@ -58,17 +61,13 @@ public class FirstKata {
         driver.findElement(By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]")).click();
 
         w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.promoCode")));
-
-
         driver.findElement(By.cssSelector("input.promoCode")).sendKeys("rahulshettyacademy");
-
         driver.findElement(By.cssSelector("button.promoBtn")).click();
 
 //explicit wait
 
 
         w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.promoInfo")));
-
         System.out.println(driver.findElement(By.cssSelector("span.promoInfo")).getText());
 
 
