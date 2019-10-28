@@ -1,3 +1,5 @@
+package Katas;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class FirstKata {
+public class ImplicitWait {
     /* public static void main (String [] args){
          WebDriverManager.chromedriver().setup();
          WebDriver driver = new ChromeDriver();
@@ -30,7 +32,10 @@ public class FirstKata {
  *
  *         //explicitWait es para cuando el implicitWait no es suficientes y se hace referencia a un solo elemento
  *        en particular
- *              FluentWait cae dentro de la categoría de explicitWait.- Busca en intervalos de tiempo
+ *              - WebdriverWait
+ *              - FluentWait cae dentro de la categoría de explicitWait.- Busca en intervalos de tiempo (tiempo maximo de busqueda, polling time [cada determinado tiempo]) ...
+ *                              Por ejemplo (10,2) --> buscara 5 veces ... esto sería util cuando un elemento cambia pero se tienen las mismas propiedades html y se tienen 3 estados por ejemplo ... en realidad no se pasan parametros si no que se van encadenando metodos
+ *                                  ... 1) Tarjeta aceptada 2) tu orden esta siendo procesada 3) confirmación
  *
  */
 
