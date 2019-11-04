@@ -19,61 +19,13 @@ public class ImplicitWait {
          driver.get("http://www.google.com");
      }*/
     public static void main(String[] args) throws InterruptedException {
-/**
- * HAY 4 FORMAS DE SINCRONIZACIÓN
- *  - Implicit wait - Se esta definiendo de forma global hasta que muere el driver
- *  - Explicit wait
- *  - Thread.sleep
- *  - Fluent wait
- *
- *  //implicitWait es de forma general y aplica a cada findElement... No puede ser un numero muy alto
- *         //pues se pueden esconder temas de performance y no puede ser tan bajo como para que no tome
- *         //los elementos
- *
- *         //explicitWait es para cuando el implicitWait no es suficientes y se hace referencia a un solo elemento
- *        en particular
- *              - WebdriverWait
- *              - FluentWait cae dentro de la categoría de explicitWait.- Busca en intervalos de tiempo (tiempo maximo de busqueda, polling time [cada determinado tiempo]) ...
- *                              Por ejemplo (10,2) --> buscara 5 veces ... esto sería util cuando un elemento cambia pero se tienen las mismas propiedades html y se tienen 3 estados por ejemplo ... en realidad no se pasan parametros si no que se van encadenando metodos
- *                                  ... 1) Tarjeta aceptada 2) tu orden esta siendo procesada 3) confirmación
- *
- */
-
-      //  System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");    //SETUP OF WEBDRIVER
-
-
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriverWait w = new WebDriverWait(driver,10);
+        w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
 
-
-
-        WebDriverWait w = new WebDriverWait(driver, 10);
-
-
-        String[] itemsNeeded = {"Cucumber", "Brocolli", "Beetroot"};
-
-
-        driver.get("https://rahulshettyacademy.com/seleniumPractise/");
-
-        //Thread.sleep(3000);
-
-        addItems(driver, itemsNeeded);
-
-        driver.findElement(By.cssSelector("img[alt='Cart']")).click();
-
-        driver.findElement(By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]")).click();
-
-        w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.promoCode")));
-        driver.findElement(By.cssSelector("input.promoCode")).sendKeys("rahulshettyacademy");
-        driver.findElement(By.cssSelector("button.promoBtn")).click();
-
-//explicit wait
-
-
-        w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.promoInfo")));
-        System.out.println(driver.findElement(By.cssSelector("span.promoInfo")).getText());
 
 
     }
